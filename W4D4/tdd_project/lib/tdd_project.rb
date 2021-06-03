@@ -19,4 +19,21 @@ class Array
         pairs
         # [[2, 3], [0, 4]]
     end
+
+    def my_transpose
+        new_matrix = []
+        
+        length.times do |i|
+            sub_matrix = []
+            length.times do |j|
+                sub_matrix << self[j][i]
+            end
+            new_matrix << sub_matrix
+        end 
+
+        new_matrix
+
+        # transpose
+    end
+
 end
