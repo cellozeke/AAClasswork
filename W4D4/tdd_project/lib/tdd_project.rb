@@ -35,5 +35,20 @@ class Array
 
         # transpose
     end
-
 end
+
+def stock_picker(arr)
+    max_profit = 0
+    indices = [0, 0]
+    (0...arr.length).each do |i|
+        (i...arr.length).each do |j|
+            if arr[j] - arr[i] > max_profit
+                max_profit = arr[j] - arr[i]
+                indices = [i, j]
+            end
+        end
+    end
+    indices
+end
+
+# [10, 30, 20, 40, 70, 5]

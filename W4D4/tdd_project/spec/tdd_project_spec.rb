@@ -37,3 +37,14 @@ describe "#my_transpose" do
         end
     end
 end 
+
+describe '#stock_picker' do
+    subject(:arr) { [10, 30, 20, 40, 70, 5] }
+    context 'given an array of integer stock prices' do
+        it 'returns a pair of indices representing days where buying then selling stock is most profitable' do
+            expect(stock_picker(arr)).to eq [0, 4]
+        end
+    end
+end
+
+

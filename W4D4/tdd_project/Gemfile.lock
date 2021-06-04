@@ -24,6 +24,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   byebug
@@ -31,4 +32,4 @@ DEPENDENCIES
   rspec
 
 BUNDLED WITH
-   2.2.16
+   2.2.17
