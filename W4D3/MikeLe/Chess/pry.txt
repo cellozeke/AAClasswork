@@ -1,0 +1,11 @@
+reset
+load "board.rb"
+b = Board.new
+bishop = Bishop.new(:Black, b, [4, 4])
+queen = Queen.new(:White, b, [4, 5])
+knight = Knight.new(:Black, b, [5, 6])
+pawn = Pawn.new(:Black, b, [1, 5])
+pawn2 = Pawn.new(:White, b, [2, 4])
+pawn3 = Pawn.new(:White, b, [2, 6])
+rook = Rook.new(:White, b, [3,5])
+king = King.new(:White, b, [2, 5])
