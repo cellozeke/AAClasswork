@@ -11,7 +11,7 @@ class QuestionsDatabase < SQLite3::Database
   end
 end
 
-class Users
+class User
   class << self
     def find_by_id(id)
       user = QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -21,7 +21,7 @@ class Users
       SQL
       return nil if user.empty?
 
-      Users.new(user.first)
+      User.new(user.first)
     end
 
     def find_by_name(fname, lname)
@@ -32,7 +32,7 @@ class Users
       SQL
       return nil if users.empty?
 
-      users.map! { |user| Users.new(user) }
+      users.map! { |user| User.new(user) }
     end
   end
 
@@ -45,16 +45,16 @@ class Users
     @lname = options['lname']
   end
 
-  def authored_questions(author_id)
-    Questions.find_by_author_id(author_id)
+  def authored_questions
+    Question.find_by_author_id(id)
   end
 
-  def authored_replies(user_id)
-    Replies.find_by_user_id(user_id)
+  def authored_replies
+    Reply.find_by_user_id(id)
   end
 end
 
-class Questions
+class Question
   class << self
     def find_by_id(id)
       question = QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -64,7 +64,7 @@ class Questions
       SQL
       return nil if question.empty?
 
-      Questions.new(question.first)
+      Question.new(question.first)
     end
 
     def find_by_author_id(author_id)
@@ -75,7 +75,7 @@ class Questions
       SQL
       return nil if questions.empty?
 
-      questions.map! { |question| Questions.new(question) }
+      questions.map! { |question| Question.new(question) }
     end
   end
 
@@ -88,9 +88,17 @@ class Questions
     @body = options['body']
     @author_id = options['author_id']
   end
+
+  def author
+    User.find_by_id(author_id)
+  end
+
+  def replies
+    Reply.find_by_question_id(id)
+  end
 end
 
-class QuestionFollows
+class QuestionFollow
   class << self
     def find_by_id(id)
       follow = QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -100,20 +108,44 @@ class QuestionFollows
       SQL
       return nil if follow.empty?
 
-      QuestionFollows.new(follow.first)
+      QuestionFollow.new(follow.first)
+    end
+
+    def followers_for_question_id(question_id)
+      followers = QuestionsDatabase.instance.execute(<<-SQL, question_id)
+        SELECT users.id, users.fname, users.lname
+        FROM users
+        JOIN question_follows ON users.id = question_follows.following_user_id
+        WHERE question_follows.following_question_id = ?
+      SQL
+      return nil if followers.empty?
+
+      followers.map! { |follower| User.new(follower) }
+    end
+
+    def followed_questions_for_user_id(user_id)
+      questions = QuestionsDatabase.instance.execute(<<-SQL, user_id)
+        SELECT questions.id, questions.title, questions.body, questions.author_id
+        FROM questions
+        JOIN question_follows ON questions.id = question_follows.following_question_id
+        WHERE question_follows.following_user_id = ?
+      SQL
+      return nil if questions.empty?
+
+      questions.map! { |question| Question.new(question) }
     end
   end
 
-  attr_reader :id, :following_user_id, :following_question_id
+  # attr_reader :id, :following_user_id, :following_question_id
 
-  def initialize(options)
-    @id = options['id']
-    @following_user_id = options['following_user_id']
-    @following_question_id = options['following_question_id']
-  end
+  # def initialize(options)
+  #   @id = options['id']
+  #   @following_user_id = options['following_user_id']
+  #   @following_question_id = options['following_question_id']
+  # end
 end
 
-class Replies
+class Reply
   class << self
     def find_by_id(id)
       reply = QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -123,7 +155,7 @@ class Replies
       SQL
       return nil if reply.empty?
 
-      Replies.new(reply.first)
+      Reply.new(reply.first)
     end
 
     def find_by_user_id(id)
@@ -134,7 +166,7 @@ class Replies
       SQL
       return nil if replies.empty?
 
-      replies.map! { |reply| Replies.new(reply) }
+      replies.map! { |reply| Reply.new(reply) }
     end
 
     def find_by_question_id(id)
@@ -145,7 +177,18 @@ class Replies
       SQL
       return nil if replies.empty?
 
-      replies.map! { |reply| Replies.new(reply) }
+      replies.map! { |reply| Reply.new(reply) }
+    end
+
+    def find_by_parent_reply_id(id)
+      replies = QuestionsDatabase.instance.execute(<<-SQL, id)
+        SELECT *
+        FROM replies
+        WHERE parent_reply_id = ?
+      SQL
+      return nil if replies.empty?
+
+      replies.map! { |reply| Reply.new(reply) }
     end
   end
 
@@ -159,9 +202,25 @@ class Replies
     @parent_reply_id = options['parent_reply_id']
     @user_id = options['user_id']
   end
+
+  def author
+    User.find_by_id(user_id)
+  end
+
+  def question
+    Question.find_by_id(question_id)
+  end
+
+  def parent_reply
+    Reply.find_by_id(parent_reply_id)
+  end
+
+  def child_replies
+    Reply.find_by_parent_reply_id(id)
+  end
 end
 
-class QuestionLikes
+class QuestionLike
   class << self
     def find_by_id(id)
       like = QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -171,7 +230,7 @@ class QuestionLikes
       SQL
       return nil if like.empty?
 
-      QuestionLikes.new(like.first)
+      QuestionLike.new(like.first)
     end
   end
 
