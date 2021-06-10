@@ -56,22 +56,33 @@ INSERT INTO
 VALUES
   ('Joe', 'Kim'),
   ('Zeke', 'Yu'),
-  ('Mike', 'Madsen');
+  ('Mike', 'Madsen'),
+  ('Jordan', 'Tom'),
+  ('Andy', 'Huang');
 
 INSERT INTO
   questions (title, body, author_id)
 VALUES
   ('How to Ruby?!', 'How do you Ruby', 1),
-  ('How to SQL?!', 'How do you SQL', 3),
-  ('Why is my class disappointing', 'I am so disappointed', 2);
+  ('How to SQL?!', 'How do you SQL', 2),
+  ('Why is my class disappointing', 'I am so disappointed', 3),
+  ('Why am I sleepy', 'Whyyy', 4),
+  ('How can I help you', 'IDK', 5);
 
 INSERT INTO
   question_follows (following_user_id, following_question_id)
 VALUES
-  (1, 3),
   (1, 2),
+  (3, 4),
+  (3, 5),
+  (3, 5),
   (1, 1),
+  (2, 1),
+  (4, 1),
+  (1, 3),
   (2, 3),
+  (4, 3),
+  (5, 3),
   (3, 3);
 
 INSERT INTO
@@ -85,7 +96,10 @@ INSERT INTO
   question_likes (user_id, question_id)
 VALUES
   (1, 1),
+  (1, 4),
   (2, 1),
   (2, 3),
+  (2, 4),
   (3, 2),
+  (3, 4),
   (3, 3);
