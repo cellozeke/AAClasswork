@@ -33,11 +33,23 @@ def vanity_projects
   Movie
     .select('movies.id, movies.title, actors.name')
     .joins(:actors)
-    .where('_____________ ,castings.ord=1') #missing director's id in movies.
+    .where('director_id = castings.actor_id')
+    .where('castings.ord = 1')
+    # .order(:title)
+    # .group(:director_id)
+    # .having('castings.ord = 1')
+    # .pluck('movies.id, movies.title, actors.name')
+    # .where('_____________ ,castings.ord=1') #missing director's id in movies.
 end
 
 def most_supportive
   # Find the two actors with the largest number of non-starring roles.
   # Show each actor's id, name and number of supporting roles.
-
+  Actor
+    .select('actors.id, actors.name, COUNT(*) AS roles')
+    .joins(:castings)
+    .where.not(castings: { ord: 1 })
+    .group(:id)
+    .order('COUNT(*) DESC')
+    .limit(2)
 end
