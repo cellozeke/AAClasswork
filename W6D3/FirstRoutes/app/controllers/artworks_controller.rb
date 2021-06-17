@@ -1,7 +1,16 @@
 class ArtworksController < ApplicationController
   def index
-    @artworks = Artwork.all
-    render json: @artworks
+    # @artworks = Artwork.all
+    # render json: @artworks
+    
+    @artworks = Artwork.where(artist_id: params[:user_id])
+    # @test = Artwork.joins(:artwork_shares).where(artwork_shares: {viewer_id: params[:user_id]})
+    @test = Artwork.joins(:artwork_shares).where('artwork_shares.viewer_id = (?) OR artworks.artist_id = (?)', params[:user_id], params[:user_id])
+    
+    render json: @test
+    # render json: @artworks
+
+ 
   end
 
   def create
@@ -30,7 +39,7 @@ class ArtworksController < ApplicationController
   def destroy
     @artwork = Artwork.find(params[:id])
     @artwork.destroy
-    index
+    render json: @artwork
   end
 
   private
