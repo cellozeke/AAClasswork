@@ -21,3 +21,7 @@ chicken = Artwork.create!({title: 'Rubber Chicken', image_url: 'chickens4lyfe.co
 share1 = ArtworkShare.create!({artwork_id: ducky.id, viewer_id: zeke.id})
 share2 = ArtworkShare.create!({artwork_id: bunny.id, viewer_id: jack.id})
 share3 = ArtworkShare.create!({artwork_id: chicken.id, viewer_id: john.id})
+
+comment1 = Comment.create!({ user_id: john.id, artwork_id: chicken.id, body: 'Mmm chicken nuggets' })
+comment2 = Comment.create!({ user_id: zeke.id, artwork_id: ducky.id, body: 'Mmm duck' })
+comment3 = Comment.create!({ user_id: jack.id, artwork_id: bunny.id, body: 'Mmm bunny' })
