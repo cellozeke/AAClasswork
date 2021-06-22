@@ -9,7 +9,6 @@
   </head>
 
   <body>
-    <header> 
     <% if logged_in? %>
       <h2>  Welcome, <%= current_user.user_name %>! </h2>
       <form method='POST' action='<%= session_url %>'>
@@ -20,7 +19,6 @@
       <a href='<%= new_user_url %>'> Sign Up </a>
       <a href='<%= new_session_url %>'> Log In </a>
     <% end %>
-    </header>
     <%= yield %>
   </body>
 </html>

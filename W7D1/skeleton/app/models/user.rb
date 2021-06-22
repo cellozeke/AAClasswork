@@ -14,6 +14,10 @@ class User < ApplicationRecord
   validates :user_name, :session_token, presence: true, uniqueness: true
   validates :password_digest, presence: true
 
+  has_many :cats,
+  foreign_key: :user_id,
+  class_name: :Cat
+
   def self.find_by_credentials(user_name, password)
     user = User.find_by(user_name: user_name)
     if user && user.check_password?(password)

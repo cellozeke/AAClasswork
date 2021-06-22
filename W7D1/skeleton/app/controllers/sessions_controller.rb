@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :check_logged_in?, only: [:new, :create]
+  
   def new
     @user = User.new
     render :new
