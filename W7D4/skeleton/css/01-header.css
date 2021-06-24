@@ -1,0 +1,70 @@
+/* PHASE 1: Header */
+
+body {
+  font-weight: normal;
+  font-family: inherit;
+  font-size: inherit;
+
+}
+
+.header {
+  background-color: #f00;
+  color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: blue; */
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 1px #ccc solid;
+  border-right: 1px #ccc solid;
+}
+
+.header-logo {
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-right: 1px #ccc solid;
+  /* background-color: inherit; */
+}
+
+.header-logo:hover {
+  cursor: pointer;
+  /* color: inherit; */
+  background-color: black;
+}
+
+.header-list {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  /* background-color: purple; */
+}
+
+li {
+  padding: 10px 20px;
+  border-left: 1px #ccc solid;
+  cursor: pointer;
+  /* border-right: 1px #ccc solid; */
+  /* background-color: lawngreen; */
+}
+
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+li:hover {
+  text-decoration: none;
+  /* color: inherit; */
+  background-color: black;
+}
