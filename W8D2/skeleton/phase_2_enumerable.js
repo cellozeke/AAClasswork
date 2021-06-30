@@ -1,7 +1,10 @@
 Array.prototype.myEach = function(callback) {
-  this.forEach(element => {
-    callback(element);
-  })
+  // this.forEach(element => {
+  //   callback(element);
+  // })
+  for (let i = 0; i < this.length; i++) {
+    callback(this[i]);
+  }
 }
 
 cb = function(element) {
