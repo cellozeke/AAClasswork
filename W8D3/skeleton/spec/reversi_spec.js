@@ -239,6 +239,7 @@ describe("Board", function () {
     });
 
     it('should return true for a valid move', function () {
+      debugger
       expect(testBoard.validMove([2, 3], "black")).toEqual(true);
     });
   });
