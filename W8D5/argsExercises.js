@@ -23,15 +23,15 @@ function sum2() {
 //   return (...callArgs) => this.apply(ctx, bindArgs.concat(callArgs));
 // };
 
-// Function.prototype.myBind = function(ctx) {
-//   let args1 = Array.from(arguments);
-//   args1.shift();
-//   let that = this;
-//   return function() {
-//     args2 = Array.from(arguments);
-//     return that.apply(ctx, args1.concat(args2));
-//   };
-// };
+Function.prototype.myBind = function(ctx) {
+  let args1 = Array.from(arguments);
+  args1.shift();
+  let that = this;
+  return function() {
+    args2 = Array.from(arguments);
+    return that.apply(ctx, args1.concat(args2));
+  };
+};
 
 class Cat {
   constructor(name) {
@@ -68,30 +68,30 @@ const pavlov = new Dog("Pavlov");
 // const notMarkovSays = markov.says.myBind(pavlov);
 // notMarkovSays("meow", "me");
 
-// function curriedSum(numArgs) {
-//   let numbers = [];
-//   return function _curriedSum(num) {
-//     numbers.push(num);
-//     if (numbers.length === numArgs) {
-//       let result = numbers.reduce((acc, el) => acc + el);
-//       numbers = [];
-//       return result;
-//     } else {
-//       // return _curriedSum;
-//     };
-//   };
-// };
+function curriedSum(numArgs) {
+  let numbers = [];
+  return function _curriedSum(num) {
+    numbers.push(num);
+    if (numbers.length === numArgs) {
+      let result = numbers.reduce((acc, el) => acc + el);
+      numbers = [];
+      return result;
+    } else {
+      return _curriedSum;
+    };
+  };
+};
 
-// const calculator4 = curriedSum(4);
-// console.log(calculator4(1));
-// console.log(calculator4(2));
-// console.log(calculator4(3));
-// console.log(calculator4(4));
-// console.log('hi');
-// console.log(calculator4(5));
-// console.log(calculator4(5));
-// console.log(calculator4(5));
-// console.log(calculator4(5));
+const calculator4 = curriedSum(4);
+console.log(calculator4(1));
+console.log(calculator4(2));
+console.log(calculator4(3));
+console.log(calculator4(4));
+console.log('hi');
+console.log(calculator4(5));
+console.log(calculator4(5));
+console.log(calculator4(5));
+console.log(calculator4(5));
 
 Function.prototype.curry = function(numArgs) {
   let args = [];
@@ -116,7 +116,7 @@ Function.prototype.curry = function(numArgs) {
 // };
 
 
-const curriedWoof = pavlov.woofs.curry(3);
-curriedWoof('blah');
-curriedWoof('blah');
-curriedWoof('blah');
+// const curriedWoof = pavlov.woofs.curry(3);
+// curriedWoof('blah');
+// curriedWoof('blah');
+// curriedWoof('blah');
