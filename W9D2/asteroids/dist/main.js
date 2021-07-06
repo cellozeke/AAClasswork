@@ -15,7 +15,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\r\nwindow.MovingObject = MovingObject;\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\r\n\r\ndocument.addEventListener('DOMContentLoaded', function () {\r\nwindow.MovingObject = MovingObject;\r\n\r\nconst canvasEl = document.getElementById('game-canvas')\r\nconst contx = canvasEl.getContext(\"2d\");\r\nconsole.log(contx)\r\n\r\n// testing\r\nconst mo = new MovingObject({\r\n    pos: [90, 90],\r\n    vel: [10, 10],\r\n    radius: 5,\r\n    color: \"#808080\"\r\n});\r\n\r\nmo.draw(contx)\r\n\r\n})\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src
   \******************************/
 /***/ ((module) => {
 
-eval("function MovingObject(options) {\r\n  this.pos = options['pos'];\r\n  this.vel = options['vel'];\r\n  this.radius = options['radius'];\r\n  this.color = options['color'];\r\n};\r\n\r\nMovingObect.prototype.draw = function(ctx) {\r\n  \r\n};\r\n\r\nmodule.exports = MovingObject;\r\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+eval("\r\n\r\nfunction MovingObject(options) {\r\n  this.pos = options['pos'];\r\n  this.vel = options['vel'];\r\n  this.radius = options['radius'];\r\n  this.color = options['color'];\r\n};\r\n\r\nMovingObject.prototype.draw = function(ctx) {\r\n  ctx.beginPath();\r\n  ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, false);\r\n  ctx.stroke();\r\n  // need some color and style\r\n  // ctx.fillStyle()\r\n  \r\n};\r\n\r\nmodule.exports = MovingObject;\r\n\r\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
 
 /***/ })
 
