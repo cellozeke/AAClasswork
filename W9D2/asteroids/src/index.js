@@ -9,12 +9,14 @@ console.log(contx)
 
 // testing
 const mo = new MovingObject({
-    pos: [90, 90],
-    vel: [10, 10],
-    radius: 5,
+    pos: [100, 100],
+    vel: [100, 100],
+    radius: 50,
     color: "#808080"
 });
 
-mo.draw(contx)
+mo.draw(contx);
+setTimeout(mo.move(), 5000);
+setTimeout(mo.draw(contx), 5000);
 
-})
+});
