@@ -1,5 +1,5 @@
 const MovingObject = require("./moving_object");
-const Util = require("./utils.js")
+const Util = require("./utils.js");
 
 
 function Asteroid(pos) {
