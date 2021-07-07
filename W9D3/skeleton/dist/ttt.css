@@ -59,12 +59,30 @@ ul {
 li {
     width: 100px;
     height: 100px;
-    background-color: gray;
     border: 1px solid black;
-    /* border-color: green; */
     box-sizing: border-box;
 }
 
-li:hover {
+/* li:hover {
    background-color: yellow; 
+}
+
+.hover-test, .hover-test:hover {
+  background-color: white; 
+} */
+
+[data-mark|='empty'] {
+  background-color: pink;
+}
+
+[data-mark|='empty']:hover {
+  background-color: yellow; 
+}
+
+[data-mark|='x'] {
+  background-color: green;
+}
+
+[data-mark|='o'] {
+  background-color: orange;
 }

@@ -23,9 +23,9 @@ eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\
 /*!*************************!*\
   !*** ./src/ttt-view.js ***!
   \*************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("class View {\n  constructor(game, el) {\n    this.board = el;\n    this.setupBoard();\n  };\n\n  setupBoard() {\n    for (let i = 0; i < 9; i++) {\n      let li = document.createElement('li');\n\n      let pos = `[${Math.floor(i / 3)}, ${i % 3}]`;\n      li.setAttribute(\"data-pos\", pos);\n      \n      this.board.appendChild(li);\n    };\n  };\n  \n  bindEvents() {}\n\n  handleClick(e) {}\n\n  makeMove(square) {}\n\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("const Game = __webpack_require__(/*! ../ttt_node/game */ \"./ttt_node/game.js\");\n\nclass View {\n  constructor(game, el) {\n    this.game = game;\n    this.board = el;\n    this.handleClick = this.handleClick.bind(this);\n    this.board.addEventListener('click', this.handleClick);\n    this.setupBoard();\n  };\n\n  setupBoard() {\n    for (let i = 0; i < 9; i++) {\n      let li = document.createElement('li');\n      let pos = `[${Math.floor(i / 3)}, ${i % 3}]`;\n      li.setAttribute(\"data-pos\", pos);\n      li.setAttribute(\"data-mark\", 'empty');\n      this.board.appendChild(li);\n    };\n  };\n  \n  bindEvents() {\n\n  };\n\n  handleClick(e) {\n    let pos = e.target.getAttribute('data-pos');\n    // let pos = JSON.parse(e.target.getAttribute('data-pos'));\n    console.log(this);\n    console.log(this.game);\n    this.makeMove(pos);\n  };\n\n  makeMove(square) {\n    const li = document.querySelector(\"li[data-pos=\"+`'${square}'`+\"]\"); // MAY NEED TO FIX\n    console.log(li);\n    li.setAttribute('data-mark', this.game.currentPlayer);\n    this.game.playMove(JSON.parse(square));\n  }\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ }),
 
