@@ -25,7 +25,7 @@ eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\
   \*************************/
 /***/ ((module) => {
 
-eval("class View {\n  constructor(game, el) {\n    this.board = el;\n    this.setupBoard();\n  };\n\n  setupBoard() {\n    for (let i = 0; i < 9; i++) {\n      let li = document.createElement('li');\n      this.board.appendChild(li);\n    };\n  };\n  \n  bindEvents() {}\n\n  handleClick(e) {}\n\n  makeMove(square) {}\n\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, el) {\n    this.board = el;\n    this.setupBoard();\n  };\n\n  setupBoard() {\n    for (let i = 0; i < 9; i++) {\n      let li = document.createElement('li');\n\n      let pos = `[${Math.floor(i / 3)}, ${i % 3}]`;\n      li.setAttribute(\"data-pos\", pos);\n      \n      this.board.appendChild(li);\n    };\n  };\n  \n  bindEvents() {}\n\n  handleClick(e) {}\n\n  makeMove(square) {}\n\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ }),
 
