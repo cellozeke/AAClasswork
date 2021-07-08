@@ -53,7 +53,7 @@ ul {
     display: flex;
     width: 300px;
     flex-wrap: wrap;
-    /* we need to display something with LI */
+
 }
 
 li {
@@ -81,8 +81,35 @@ li {
 
 [data-mark|='x'] {
   background-color: green;
+  background-image: url("ruby.png");
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 [data-mark|='o'] {
   background-color: orange;
+  background-image: url("js.png");
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  font-family: cursive;
+}
+
+div {
+  width: 300px;
+  background-color: gray;
+  margin: auto;
+}
+
+figure img, figure{
+  width: 50px;
+  font-size: 24px;
+  font-family: cursive;
+
 }
