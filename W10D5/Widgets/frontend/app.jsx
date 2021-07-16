@@ -1,8 +1,12 @@
 import React from 'react';
+import Clock from './clock';
 
-const App = (props) => {
+const App = () => {
   return (
-    <div className="app">Hi Jack</div>
+    <div className="app">
+      <h1>Time is a construct</h1>
+      <Clock />
+    </div>
   )
 }
 
