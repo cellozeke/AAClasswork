@@ -4,6 +4,7 @@ module.exports = {
   entry: './frontend/widgets.jsx',
   output: {
     filename: './bundle.js',
+    path: path.resolve(__dirname)
   },
   module: {
     rules: [
