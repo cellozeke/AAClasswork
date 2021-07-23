@@ -1,0 +1,14 @@
+const newTodos = [
+  {
+   id: 1,
+   title: "wash bike",
+   body: "with soap",
+   done: false
+ },
+ {
+   id: 2,
+   title: "wash cat",
+   body: "with shampoo",
+   done: true
+ }
+];

@@ -11,7 +11,7 @@ export default class Clock extends React.Component {
     console.log(this.state.time);
   }
   render() {
-    return (<h1>Hello</h1>);ç
+    return (<h1>Hello</h1>);
     // console.log();
     // if (!this.state.time) return null;
     // return this.state.time;
