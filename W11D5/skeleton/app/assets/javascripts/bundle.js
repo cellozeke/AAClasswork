@@ -218,6 +218,25 @@ var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
 
 /***/ }),
 
+/***/ "./frontend/reducers/selector.js":
+/*!***************************************!*\
+  !*** ./frontend/reducers/selector.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var selectAllPokemon = function selectAllPokemon(state) {
+  return Object.values(state.entities.pokemon);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (selectAllPokemon);
+
+/***/ }),
+
 /***/ "./frontend/store/store.js":
 /*!*********************************!*\
   !*** ./frontend/store/store.js ***!
@@ -30895,8 +30914,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _actions_pokemon_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/pokemon_actions */ "./frontend/actions/pokemon_actions.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/api_util */ "./frontend/util/api_util.js");
+/* harmony import */ var _reducers_selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reducers/selector */ "./frontend/reducers/selector.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/api_util */ "./frontend/util/api_util.js");
+
 
 
 
@@ -30905,13 +30926,14 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', function () {
   var rootEl = document.getElementById('root');
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Pokedex"), rootEl);
-  var store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.default)();
+  var store = (0,_store_store__WEBPACK_IMPORTED_MODULE_4__.default)();
   window.getState = store.getState;
-  window.dispatch = store.dispatch; // window.store = store;
-
-  window.fetchAllPokemon = _util_api_util__WEBPACK_IMPORTED_MODULE_4__.fetchAllPokemon;
+  window.dispatch = store.dispatch;
+  window.store = store;
+  window.fetchAllPokemon = _util_api_util__WEBPACK_IMPORTED_MODULE_5__.fetchAllPokemon;
   window.requestAllPokemon = _actions_pokemon_actions__WEBPACK_IMPORTED_MODULE_2__.requestAllPokemon;
   window.receiveAllPokemon = _actions_pokemon_actions__WEBPACK_IMPORTED_MODULE_2__.receiveAllPokemon;
+  window.selectAllPokemon = _reducers_selector__WEBPACK_IMPORTED_MODULE_3__.default;
 });
 })();
 
